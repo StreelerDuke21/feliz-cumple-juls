@@ -1,1 +1,370 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Cumpleaños Juls 🌙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #05070f;
+      --deep-navy: #0a1628;
+      --navy: #0f2744;
+      --navy-mid: #163a5f;
+      --navy-soft: #1e4a75;
+      --moon: #e8eef6;
+      --moon-glow: rgba(200, 220, 255, 0.35);
+      --star: #dce6f5;
+      --text: #e8eef8;
+      --text-soft: #a8b8d0;
+      --accent: #7eb8ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fondo cielo: negro → azul marino */
+    .sky {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 80% at 50% 0%, var(--navy-mid) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 60% at 70% 20%, rgba(22, 58, 95, 0.55) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 25% 30%, rgba(15, 39, 68, 0.7) 0%, transparent 45%),
+        linear-gradient(180deg, var(--black) 0%, var(--deep-navy) 35%, var(--navy) 70%, var(--navy-mid) 100%);
+      z-index: 0;
+    }
+
+    /* Estrellas */
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      background: var(--star);
+      border-radius: 50%;
+      animation: twinkle var(--dur) ease-in-out infinite;
+      opacity: var(--op);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--op); transform: scale(1); }
+      50% { opacity: calc(var(--op) * 0.35); transform: scale(0.85); }
+    }
+
+    /* Contenedor principal */
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.35rem 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding-top: 3.5rem;
+    }
+
+    /* Luna */
+    .moon-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin-bottom: 2.75rem;
+      animation: floatMoon 8s ease-in-out infinite;
+    }
+
+    @keyframes floatMoon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .moon {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      background: #050810 url('https://live.staticflickr.com/7533/15984099212_9d77934aaa_b.jpg') center center / cover no-repeat;
+      box-shadow:
+        0 0 50px 18px var(--moon-glow),
+        0 0 100px 40px rgba(120, 160, 220, 0.2),
+        inset 0 0 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Suaviza el borde y da un poco de profundidad */
+    .moon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset 0 0 20px 4px rgba(5, 10, 20, 0.45);
+      pointer-events: none;
+    }
+
+    .moon-label {
+      margin-top: 1.1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      font-weight: 400;
+    }
+
+    .moon-label span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Tipografía */
+    .greeting {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 0.85rem;
+      animation: fadeUp 1s ease-out both;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 8vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      animation: fadeUp 1s ease-out 0.15s both;
+    }
+
+    h1 .name {
+      background: linear-gradient(120deg, #c8dcf5 0%, #7eb8ff 50%, #a8c8f0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-soft);
+      margin-bottom: 2.25rem;
+      animation: fadeUp 1s ease-out 0.3s both;
+    }
+
+    /* Tarjeta del mensaje */
+    .card {
+      background: linear-gradient(160deg, rgba(15, 39, 68, 0.55) 0%, rgba(10, 22, 40, 0.7) 100%);
+      border: 1px solid rgba(126, 184, 255, 0.12);
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      animation: fadeUp 1s ease-out 0.45s both;
+    }
+
+    .message {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      line-height: 1.75;
+      color: var(--text);
+      font-weight: 400;
+      text-align: left;
+    }
+
+    .message p {
+      margin-bottom: 1.1rem;
+    }
+
+    .message p:last-child {
+      margin-bottom: 0;
+    }
+
+    .message .highlight {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .message .love {
+      color: #a8c8f0;
+      font-style: italic;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      margin: 1.6rem 0;
+      color: rgba(126, 184, 255, 0.4);
+      font-size: 0.9rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      height: 1px;
+      width: 48px;
+      background: linear-gradient(90deg, transparent, rgba(126, 184, 255, 0.35), transparent);
+    }
+
+    .dato-title {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+      font-weight: 500;
+    }
+
+    .moon-info {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .moon-info strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .closing {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-top: 1.25rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: rgba(168, 184, 208, 0.55);
+      letter-spacing: 0.04em;
+      animation: fadeUp 1s ease-out 0.65s both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .moon-wrap {
+        width: 150px;
+        height: 150px;
+      }
+      .card {
+        padding: 1.6rem 1.25rem;
+      }
+      .message {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky"></div>
+  <div class="stars" id="stars"></div>
+
+  <div class="container">
+    <div class="moon-wrap">
+      <div class="moon" aria-hidden="true"></div>
+      <p class="moon-label">Gibosa Creciente · <span>65,4%</span></p>
+    </div>
+
+    <p class="greeting">Esta noche, bajo la misma luna</p>
+    <h1>Feliz Cumpleaños<br><span class="name">Juls</span></h1>
+    <p class="date">13 de noviembre</p>
+
+    <div class="card">
+      <div class="message">
+        <p>Juls, feliz cumpleaños. Desde lo más profundo de mi corazoncito quiero desearte un feliz cumpleaños. Gracias por compartir un pedacito de tu vida conmigo; sabes lo especial que eres para mí, lo mucho que te quiero y te amo.</p>
+        <p>Sé que llegarás a ser la mejor instrumentadora quirúrgica y lograrás cumplir todas tus metas. Nunca cambies tu energía, tu esencia, tu rareza y tu presencia, porque es lo que define quién eres. Dios tiene grandes cosas preparadas para ti; siempre te apoyaré y acompañaré en tus mejores y peores momentos, siempre estaré pendiente de ti.</p>
+        <p class="love">Te quiero un montón. Muack.</p>
+      </div>
+
+      <div class="divider">✦</div>
+
+      <p class="dato-title">Dato curioso</p>
+      <p class="moon-info">
+        ¿Sabías que el corazón humano bombea <strong>2,6 millones de litros</strong> de sangre al año, lo que es la misma cantidad de combustible que se requirió para la misión <strong>Artemis</strong> de la NASA? Lo que quiere decir matemáticamente, cuando una persona dice «te amo de la Tierra a la Luna ida y vuelta» solo habla de que lo amará por 1 año y no una vida entera… pero mi Artemis nunca se quedará sin combustible, sin importar cuántos viajes haga.
+      </p>
+      <p class="moon-info" style="margin-top: 0.9rem;">
+        Mi brújula apunta a ti, y lo sabes. Me moveré a tu ritmo por muy largas y tempestuosas que sean las aguas del viaje.
+      </p>
+
+      <div class="divider">✦</div>
+
+      <p class="moon-info" style="text-align: center;">
+        La luna que estás viendo es la luna que te vio nacer ese <strong>13 de noviembre de 2002</strong>.
+      </p>
+    </div>
+
+    <p class="footer">Hecho con cariño · bajo el cielo de tu luna</p>
+  </div>
+
+  <script>
+    // Generar estrellas
+    const starsContainer = document.getElementById('stars');
+    const count = Math.min(140, Math.floor(window.innerWidth * 0.18));
+
+    for (let i = 0; i < count; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() < 0.85 ? Math.random() * 1.6 + 0.6 : Math.random() * 2.2 + 1.4;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.setProperty('--op', (Math.random() * 0.55 + 0.25).toFixed(2));
+      star.style.setProperty('--dur', (Math.random() * 4 + 2.5).toFixed(1) + 's');
+      star.style.animationDelay = (Math.random() * 5).toFixed(1) + 's';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
