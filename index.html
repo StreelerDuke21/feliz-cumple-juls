@@ -41,7 +41,6 @@
       position: relative;
     }
 
-    /* Fondo cielo: negro → azul marino */
     .sky {
       position: fixed;
       inset: 0;
@@ -53,7 +52,6 @@
       z-index: 0;
     }
 
-    /* Estrellas */
     .stars {
       position: fixed;
       inset: 0;
@@ -68,14 +66,14 @@
       border-radius: 50%;
       animation: twinkle var(--dur) ease-in-out infinite;
       opacity: var(--op);
+      box-shadow: 0 0 6px 1px rgba(220, 230, 245, 0.45);
     }
 
     @keyframes twinkle {
       0%, 100% { opacity: var(--op); transform: scale(1); }
-      50% { opacity: calc(var(--op) * 0.35); transform: scale(0.85); }
+      50% { opacity: calc(var(--op) * 0.4); transform: scale(0.9); }
     }
 
-    /* Contenedor principal */
     .container {
       position: relative;
       z-index: 2;
@@ -91,7 +89,6 @@
       padding-top: 3.5rem;
     }
 
-    /* Luna */
     .moon-wrap {
       position: relative;
       width: 220px;
@@ -118,7 +115,6 @@
         inset 0 0 30px rgba(0, 0, 0, 0.3);
     }
 
-    /* Suaviza el borde y da un poco de profundidad */
     .moon::after {
       content: '';
       position: absolute;
@@ -142,7 +138,6 @@
       font-weight: 500;
     }
 
-    /* Tipografía */
     .greeting {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1.15rem;
@@ -180,7 +175,6 @@
       animation: fadeUp 1s ease-out 0.3s both;
     }
 
-    /* Tarjeta del mensaje */
     .card {
       background: linear-gradient(160deg, rgba(15, 39, 68, 0.55) 0%, rgba(10, 22, 40, 0.7) 100%);
       border: 1px solid rgba(126, 184, 255, 0.12);
@@ -241,9 +235,9 @@
     }
 
     .dato-title {
-      font-family: 'Outfit', system-ui, sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 0.65rem;
@@ -251,9 +245,10 @@
     }
 
     .moon-info {
-      font-size: 0.95rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
       color: var(--text-soft);
-      line-height: 1.65;
+      line-height: 1.7;
       text-align: left;
     }
 
@@ -271,7 +266,6 @@
       text-align: center;
     }
 
-    /* Footer */
     .footer {
       margin-top: 2.5rem;
       font-size: 0.85rem;
@@ -291,7 +285,6 @@
       }
     }
 
-    /* Responsive */
     @media (max-width: 480px) {
       .moon-wrap {
         width: 150px;
@@ -348,21 +341,22 @@
   </div>
 
   <script>
-    // Generar estrellas
     const starsContainer = document.getElementById('stars');
-    const count = Math.min(140, Math.floor(window.innerWidth * 0.18));
+    const count = Math.min(220, Math.floor(window.innerWidth * 0.28) + 80);
 
     for (let i = 0; i < count; i++) {
       const star = document.createElement('div');
       star.className = 'star';
-      const size = Math.random() < 0.85 ? Math.random() * 1.6 + 0.6 : Math.random() * 2.2 + 1.4;
+      const size = Math.random() < 0.75
+        ? Math.random() * 1.8 + 1.0
+        : Math.random() * 2.8 + 1.8;
       star.style.width = size + 'px';
       star.style.height = size + 'px';
       star.style.left = Math.random() * 100 + '%';
       star.style.top = Math.random() * 100 + '%';
-      star.style.setProperty('--op', (Math.random() * 0.55 + 0.25).toFixed(2));
-      star.style.setProperty('--dur', (Math.random() * 4 + 2.5).toFixed(1) + 's');
-      star.style.animationDelay = (Math.random() * 5).toFixed(1) + 's';
+      star.style.setProperty('--op', (Math.random() * 0.5 + 0.45).toFixed(2));
+      star.style.setProperty('--dur', (Math.random() * 3.5 + 2).toFixed(1) + 's');
+      star.style.animationDelay = (Math.random() * 4).toFixed(1) + 's';
       starsContainer.appendChild(star);
     }
   </script>
